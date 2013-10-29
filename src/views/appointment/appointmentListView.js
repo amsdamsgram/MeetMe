@@ -6,7 +6,8 @@ define([
 ], function($, _, Backbone, appointmentListTemplate){
     var AppointmentListView = Backbone.View.extend({
         el: $('#appointments-list-container'),
-        title: 'Meet Me',
+        pageTitle: 'Meet Me',
+        navTitle: 'My Appointments',
 
         initialize: function(){
             this.collection = null;
@@ -22,7 +23,7 @@ define([
         },
 
         render: function(){
-            $(document).attr('title', this.title);
+            this.renderNavBar();
             var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
             $(this.el).html(compiledTemplate);
             _.bindAll(this, 'render');
@@ -30,10 +31,25 @@ define([
             return this;
         },
 
+        renderNavBar: function(){
+            $(document).attr('title', this.pageTitle);
+
+            var leftBtn = $('.nav-btn.left');
+            var rightBtn = $('.nav-btn.right');
+
+            $('#header-title').html(this.navTitle);
+
+            leftBtn.removeClass('cancel').addClass('edit');
+            rightBtn.removeClass('save').addClass('add');
+            leftBtn.attr('href', '/edit');
+            rightBtn.attr('href', '/add');
+            leftBtn.html('Edit');
+            rightBtn.html('+');
+        },
+
         orderByDate: function(){
             var sortData = _(this.collection.toJSON()).chain().sortBy('startTime')
                 .sortBy('startDate').groupBy('startDateFormat').value();
-            console.log(sortData);
             return sortData;
         },
 
