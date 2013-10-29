@@ -1,13 +1,16 @@
-<section>
-    <div class="appt-day">Wednesday, Oct 9, 2013</div>
-    <% _.each(appts, function(appt){ %>
-        <article>
-            <div class="appt-row">
-                <span class="appt-title"><%=appt.title%></span>
-                <span class="appt-time"><%=appt.startTime%></span>
-                <a href="/appointment/<%=appt.id%>">Edit</a>
-                <a href="#" class="delete-appt" id="<%=appt.id%>">Delete</a>
-            </div>
-        </article>
-    <% }); %>
-</section>
+<% _.each(sortArray, function(appts, value){ %>
+    <section>
+        <div class="appt-day"><%=value%></div>
+            <% _.each(appts, function(appt){ %>
+                <article>
+                    <div class="appt-row">
+                        <span class="appt-title"><%=appt.title%></span>
+                        <span class="appt-time"><%=appt.startTime%></span>
+                        <a href="/appointment/<%=appt.id%>">Edit</a>
+                        <a href="#" class="delete-appt" id="<%=appt.id%>">Delete</a>
+                    </div>
+                </article>
+            <% }); %>
+        </div>
+    </section>
+<% }); %>

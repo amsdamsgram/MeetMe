@@ -39,6 +39,7 @@ header{
     background-color: #4daf7b;
     color: white;
     padding: 10px;
+    position: relative;
 }
 
 header #edit-appt{
@@ -48,11 +49,11 @@ header #edit-appt{
 header #add-appt{
     float: right;
     vertical-align: middle;
-    margin-left: 76px;
 }
 
 #header-title{
-    float: right;
+    position: absolute;
+    left: 100px;
 }
 
 /* SECTION DAY */

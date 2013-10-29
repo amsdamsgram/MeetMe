@@ -4,6 +4,7 @@ require.config({
        underscore: 'vendors/underscore',
        backbone: 'vendors/backbone',
        localStorage: 'vendors/backbone.localStorage',
+       'moment': 'vendors/moment',
        routers: 'src/routers',
        models: 'src/models',
        views: 'src/views',
@@ -19,7 +20,7 @@ require.config({
            exports: "_"
        },
        "localStorage": {
-           deps: ["backbone"]
+           deps: ['backbone']
        }
    }
 });

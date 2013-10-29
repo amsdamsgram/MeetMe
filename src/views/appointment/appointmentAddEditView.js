@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'moment',
     'text!templates/appointment/appt-add-edit.html',
-], function($, _, Backbone, appointmentTemplate){
+], function($, _, Backbone, moment, appointmentTemplate){
     var AppointmentAddView = Backbone.View.extend({
         el: $('#appointment-add-container'),
         formId: '#appt-form',
@@ -27,10 +28,13 @@ define([
             var name = $(this.formId + ' #name').val();
             var desc = $(this.formId + ' #desc').val();
 
+            var startDateFormat = moment(startDate).format('dddd, MMM D, YYYY');
+
             if(this.type == 'add'){
                 this.collection.create({
                                         title: title,
                                         startDate: startDate,
+                                        startDateFormat: startDateFormat,
                                         startTime: startTime,
                                         endTime: endTime,
                                         name: name,
@@ -41,6 +45,7 @@ define([
                 this.model.save({
                                   title: title,
                                   startDate: startDate,
+                                  startDateFormat: startDateFormat,
                                   startTime: startTime,
                                   endTime: endTime,
                                   name: name,
