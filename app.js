@@ -21,7 +21,6 @@ define([
           }
       });
     };
-
     return {
         initialize: initialize
     }

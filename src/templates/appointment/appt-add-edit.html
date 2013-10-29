@@ -1,9 +1,15 @@
 <form id="appt-form">
     <input type="text" id="title" name="title" value="<%= appt ? appt.attributes.title:''%>" placeholder="Title" autofocus=""/>
-    <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate:''%>" />
-    <span> at </span>
-    <input type="time" id="start-time" name="start_time" value="<%= appt ? appt.attributes.startTime:''%>" />
-    <input type="time" id="end-time" name="end_time" value="<%= appt ? appt.attributes.endTime:''%>" />
+    <div class="start">
+        <input type="text" class="placeholder" placeholder="Start Date & Time" />
+        <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate:''%>" />
+        <span class="at"> at </span>
+        <input type="time" id="start-time" name="start_time" value="<%= appt ? appt.attributes.startTime:''%>" />
+    </div>
+    <div class="end">
+        <input type="text" class="placeholder" placeholder="End Time" />
+        <input type="time" id="end-time" name="end_time" value="<%= appt ? appt.attributes.endTime:''%>" />
+    </div>
     <input type="text" id="name" name="name" value="<%= appt ? appt.attributes.name:''%>" placeholder="Appointment with..."/>
-    <input type="text" id="desc" name="description" value="<%= appt ? appt.attributes.description:''%>" placeholder="Description"/>
+    <textarea id="desc" name="desc" placeholder="Description" rows="8"><%= appt ? appt.attributes.description:''%></textarea>
 </form>

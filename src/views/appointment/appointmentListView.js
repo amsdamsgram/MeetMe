@@ -32,19 +32,7 @@ define([
         },
 
         renderNavBar: function(){
-            $(document).attr('title', this.pageTitle);
 
-            var leftBtn = $('.nav-btn.left');
-            var rightBtn = $('.nav-btn.right');
-
-            $('#header-title').html(this.navTitle);
-
-            leftBtn.removeClass('cancel').addClass('edit');
-            rightBtn.removeClass('save').addClass('add');
-            leftBtn.attr('href', '/edit');
-            rightBtn.attr('href', '/add');
-            leftBtn.html('Edit');
-            rightBtn.html('+');
         },
 
         orderByDate: function(){

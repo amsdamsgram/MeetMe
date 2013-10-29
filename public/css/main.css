@@ -1,0 +1,169 @@
+@CHARSET "UTF-8";
+
+/* RESET */
+html,body,div,span,input,textarea,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-size: 16px;
+}
+
+@font-face {
+    font-family: 'Proxima Regular';
+    src: url('../fonts/proximanova-regular-webfont.ttf');
+    font-family: 'Proxima Semi-Bold';
+    src: url('../fonts/proximanova-semibold-webfont.ttf');
+    font-family: 'Proxima Bold';
+    src: url('../fonts/proximanova-bold-webfont.ttf');
+}
+
+a{
+	text-decoration: none;
+    color: white;
+}
+
+body {
+	line-height: 1.4;
+    font-family: 'Proxima Regular';
+}
+
+.wrap{
+    width: 320px;
+    height: 600px;
+    margin: 0 auto;
+    border: black solid 1px;
+    background-color: #dddddd;
+    overflow: scroll;
+}
+
+/* NAVIGATION BAR */
+nav{
+    background-color: #4daf7b;
+    color: white;
+    padding: 10px 0;
+    position: relative;
+}
+
+.nav-btn.left{
+    padding: 10px;
+}
+
+.nav-btn.right{
+    float: right;
+    padding: 0 10px;
+}
+
+.nav-btn.add{
+    font-family: "Proxima Bold";
+    font-size: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#nav-title{
+    position: absolute;
+    left: 100px;
+}
+
+/******* LIST VIEW *******/
+
+/* SECTION DAY */
+section .appt-day{
+    background-color: #5a5651;
+    color: white;
+    font-size: 10px;
+    padding: 5px 10px;
+}
+
+/* APPOINTMENT */
+article{
+    padding:  15px;
+    background-color: white;
+    border-bottom: solid #999999 1px; //TODO no border when last child and another section behind
+}
+
+article .appt-title{
+    font-size: 14px;
+    color: #333333;
+}
+
+article .appt-time{
+    color: #dddddd;
+    float: right;
+    font-size: 12px;
+    margin-top: 3px; //TODO Find a better way to center it
+}
+
+article .delete-icon{
+    color: black;
+    float: left;
+    margin-right: 15px;
+}
+
+article .edit{
+    color: black;
+    float: right;
+    margin-left: 15px;
+
+}
+
+/******* ADD/EDIT APPT *******/
+
+#appointment-add-container{
+    background-color: white;
+}
+
+#appt-form input, #appt-form textarea{
+    padding: 20px;
+    width: 100%;
+    border-top: 1px solid #999999;
+    outline: none;
+    /* Use width 100% with padding */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#appt-form input#start-date{
+    width: 180px;
+}
+
+#appt-form .at{
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    padding: 23px 0;
+}
+
+#appt-form input#start-time{
+    width: 120px;
+}
+
+#appt-form textarea{
+    resize: none;
+    height: 295px;
+}
+
+/* PLACEHOLDER */
+::-webkit-input-placeholder { font-style: italic; color: #999999; }
+::-moz-placeholder { font-style: italic; color: #999999; }
+:-ms-input-placeholder { font-style: italic; color: #999999; }
+input:-moz-placeholder { font-style: italic; color: #999999; }
+
+.start, .end{
+    position: relative;
+}
+
+.placeholder{
+    font-style: italic;
+    color: #999999;
+    position: absolute;
+    padding: 20px;
+    background-color: white;
+    width: 87%;
+}
+

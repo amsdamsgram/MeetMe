@@ -10,16 +10,18 @@ define([
         formId: '#appt-form',
         editType: 'Edit',
         addType: 'Add',
-        pageTitle: 'Meet Me - ' + this.type,
-        navTitle: "New Appointment",
+
+        events:{
+            'focus .placeholder': 'placeholderTrigger'
+        },
 
         initialize: function(){
             this.collection = null;
             this.model = null;
         },
-        events: {
-            'click .nav-btn.save': 'addEditAppt',
-            'click .nav-btn.cancel': 'cancelAppt'
+
+        placeholderTrigger: function(ev){
+            $(ev.target).hide();
         },
 
         addEditAppt: function(){
@@ -29,8 +31,6 @@ define([
             var endTime = $(this.formId + ' #end-time').val();
             var name = $(this.formId + ' #name').val();
             var desc = $(this.formId + ' #desc').val();
-
-            console.log(title);
 
             var startDateFormat = moment(startDate).format('dddd, MMM D, YYYY');
 
@@ -57,39 +57,12 @@ define([
             }
         },
 
-        cancelAppt: function(){
-            console.log('cancel');
-        },
-
         render: function(){
-            this.renderNavBar();
+            $(document).attr('title', 'Meet Me - ' + this.type);
             var compiledTemplate = _.template(appointmentTemplate, {appt: this.model});
             $(this.el).html(compiledTemplate);
             _.bindAll(this, 'render');
             return this;
-        },
-
-        renderNavBar: function(){
-            $(document).attr('title', this.pageTitle);
-            if(this.type == this.editType){
-
-            }
-            if(this.type == this.addType){
-                this.renderAdd();
-            }
-        },
-
-        renderAdd: function(){
-            var leftBtn = $('.nav-btn.left');
-            var rightBtn = $('.nav-btn.right');
-
-            $('#header-title').html(this.navTitle);
-            leftBtn.removeClass('edit').addClass('cancel');
-            rightBtn.removeClass('add').addClass('save');
-            leftBtn.attr('href', '/');
-            rightBtn.attr('href', '/');
-            leftBtn.html('Cancel');
-            rightBtn.html('Save');
         },
 
         clear: function(){

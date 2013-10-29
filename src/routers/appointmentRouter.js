@@ -23,7 +23,6 @@ define([
 
             this.navBarView.addView = this.addView;
             this.navBarView.editView = this.editView;
-            this.navBarView.render();
 
             Backbone.history.start({ pushState: true});
         },
@@ -33,6 +32,7 @@ define([
             this.addView.clear();
             this.collection.fetch();
             this.listView.collection = this.collection;
+            this.navBarView.render();
             this.listView.render();
         },
 
@@ -41,6 +41,7 @@ define([
             this.editView.type = this.editView.editType;
             this.editView.collection = this.collection;
             this.editView.model = this.collection.get(id);
+            this.navBarView.renderAddEdit(this.navBarView.editType);
             this.editView.render();
         },
 
@@ -48,11 +49,12 @@ define([
             this.listView.clear();
             this.addView.type = this.addView.addType;
             this.addView.collection = this.collection;
+            this.navBarView.renderAddEdit(this.navBarView.addType);
             this.addView.render();
         },
 
         'defaultRoute': function(path){
-          console.log(path);
+            console.log(path);
         }
     });
     return AppointmentRouter;
