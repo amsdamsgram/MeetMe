@@ -72,7 +72,11 @@ nav{
 
 /******* LIST VIEW *******/
 
-/* SECTION DAY */
+
+section:last-child{
+    border-bottom: solid #999999 1px;
+}
+
 section .appt-day{
     background-color: #5a5651;
     color: white;
@@ -84,7 +88,11 @@ section .appt-day{
 article{
     padding:  15px;
     background-color: white;
-    border-bottom: solid #999999 1px; //TODO no border when last child and another section behind
+    border-bottom: solid #999999 1px;
+}
+
+article:last-child{
+    border-bottom: none;
 }
 
 article .appt-title{
@@ -96,7 +104,7 @@ article .appt-time{
     color: #dddddd;
     float: right;
     font-size: 12px;
-    margin-top: 3px; //TODO Find a better way to center it
+    line-height: 22px; /* trick vertical align middle */
 }
 
 article .delete-icon{
