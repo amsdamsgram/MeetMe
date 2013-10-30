@@ -21,6 +21,9 @@ define([
             this.editView = new AppointmentAddEditView();
             this.addView = new AppointmentAddEditView();
 
+            this.editView.type = this.editView.editType;
+            this.addView.type = this.addView.addType;
+
             this.navBarView.addView = this.addView;
             this.navBarView.editView = this.editView;
 
@@ -38,7 +41,6 @@ define([
 
         'editAppt': function(id){
             this.listView.clear();
-            this.editView.type = this.editView.editType;
             this.editView.collection = this.collection;
             this.editView.model = this.collection.get(id);
             this.navBarView.renderAddEdit(this.navBarView.editType);
@@ -47,7 +49,6 @@ define([
 
         'addAppt': function(){
             this.listView.clear();
-            this.addView.type = this.addView.addType;
             this.addView.collection = this.collection;
             this.navBarView.renderAddEdit(this.navBarView.addType);
             this.addView.render();

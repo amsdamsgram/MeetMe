@@ -13,7 +13,10 @@ define([
         },
 
         events: {
-            'click .nav-btn.save': 'saveAppt'
+            'click .nav-btn.save': 'saveAppt',
+            'click .nav-btn.save-edit': 'editAppt',
+            'click .nav-btn.edit': 'renderDeleteIcon',
+            'click .nav-btn.done': 'doneEdit'
         },
 
         render: function(){
@@ -30,20 +33,16 @@ define([
 
             if(type == this.addType){
                 $('#nav-title').html('New Appointment');
-                leftBtn.removeClass('edit').addClass('cancel');
                 rightBtn.removeClass('add').addClass('save');
-                leftBtn.html('Cancel');
-                rightBtn.html('Save');
             }
             if(type == this.editType){
                 $('#nav-title').html('Edit Appointment');
-                leftBtn.removeClass('edit').addClass('done');
-                rightBtn.removeClass('add').hide();
-                leftBtn.html('Done');
+                rightBtn.removeClass('add').addClass('save-edit');
             }
-
-            leftBtn.attr('href', '/');
-            rightBtn.attr('href', '/');
+            leftBtn.removeClass('edit').removeClass('done').addClass('cancel');
+            leftBtn.attr('href', '/').html('Cancel');
+            rightBtn.attr('href', '/').html('Save');
+            rightBtn.show();
         },
 
         renderList: function(){
@@ -51,9 +50,9 @@ define([
             var rightBtn = $('.nav-btn.right');
 
             $('#nav-title').html('My Appointments');
-            leftBtn.removeClass('cancel').addClass('edit');
-            rightBtn.removeClass('save').addClass('add').show();
-            leftBtn.attr('href', '/edit');
+            leftBtn.removeClass('cancel').removeClass('done').addClass('edit');
+            rightBtn.removeClass('save').removeClass('save-edit').addClass('add').show();
+            leftBtn.attr('href', '#');
             rightBtn.attr('href', '/add');
             leftBtn.html('Edit');
             rightBtn.html('+').show();
@@ -61,6 +60,36 @@ define([
 
         saveAppt: function(){
             this.addView.addEditAppt();
+        },
+
+        editAppt: function(){
+            this.editView.addEditAppt();
+        },
+
+        renderDeleteIcon: function(){
+            var leftBtn = $('.nav-btn.left');
+            var rightBtn = $('.nav-btn.right');
+
+            leftBtn.removeClass('edit').addClass('done');
+            rightBtn.removeClass('add').hide();
+            leftBtn.html('Done');
+            leftBtn.attr('href', '/');
+
+            var icon = $('<a>').attr('href', '#').addClass('delete-icon');
+            var edit = $('<span>').addClass('arrow-edit').html('>');
+            $('.appt-time').before(edit);
+            $('.appt-row').before(icon);
+
+            var rows = $('.appt-row');
+            _.each(rows, function(row){
+               $(row).attr('href', '/appointment/'+$(row).closest('article').attr('id'));
+            });
+        },
+
+        doneEdit: function(){
+            this.renderList();
+            $('.delete-icon').remove();
+            $('.arrow-edit').remove();
         },
 
         clear: function(){
