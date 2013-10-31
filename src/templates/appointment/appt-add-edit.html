@@ -4,7 +4,7 @@
         <% if (!appt) { %>
             <input type="text" class="placeholder" placeholder="Start Date & Time" />
         <% } %>
-        <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate:''%>" />
+        <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate : currentDate%>" />
         <span class="at"> at </span>
         <input type="time" id="start-time" name="start_time" value="<%= appt ? appt.attributes.startTime:''%>" />
     </div>

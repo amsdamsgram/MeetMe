@@ -6,8 +6,30 @@ define([
 ], function($, _, Backbone, appointmentListTemplate){
     var NavigationBarView = Backbone.View.extend({
         el: $('#nav-bar'),
+
+        // Type
         editType: 'edit',
         addType: 'add',
+
+        // Navigation bar titles
+        addViewTitle: 'New Appointment',
+        editViewTitle: 'Edit Appointment',
+        listViewTitle: 'My Appointments',
+
+        // Class
+        saveBtnClass: 'save',
+        addBtnClass: 'add',
+        editBtnClass: 'edit',
+        saveEditBtnClass: 'save-edit',
+        cancelBtnClass: 'cancel',
+        doneBtnClass: 'done',
+        deleteIconClass: 'delete-icon',
+        arrowEditClass: 'arrow-edit',
+
+        // Selector
+        leftBtnSel: '.nav-btn.left',
+        rightBtnSel: '.nav-btn.right',
+        deleteBtnSel: '.delete-btn',
 
         initialize: function(){
         },
@@ -20,42 +42,36 @@ define([
         },
 
         render: function(){
-            this.renderList();
+            this.renderListNavBar();
             var compiledTemplate = _.template(appointmentListTemplate);
             $(this.el).html(compiledTemplate);
             _.bindAll(this, 'render');
             return this;
         },
 
-        renderAddEdit: function(type){
-            var leftBtn = $('.nav-btn.left');
-            var rightBtn = $('.nav-btn.right');
-
+        renderAddEditNavBar: function(type){
             if(type == this.addType){
-                $('#nav-title').html('New Appointment');
-                rightBtn.removeClass('add').addClass('save');
+                $('#nav-title').html(this.addViewTitle);
+                $(this.rightBtnSel).removeClass(this.addBtnClass).addClass(this.saveBtnClass);
             }
             if(type == this.editType){
-                $('#nav-title').html('Edit Appointment');
-                rightBtn.removeClass('add').addClass('save-edit');
+                $('#nav-title').html(this.editViewTitle);
+                $(this.rightBtnSel).removeClass(this.addBtnClass).addClass(this.saveEditBtnClass);
             }
-            leftBtn.removeClass('edit').removeClass('done').addClass('cancel');
-            leftBtn.attr('href', '/').html('Cancel');
-            rightBtn.attr('href', '/').html('Save');
-            rightBtn.show();
+            $(this.leftBtnSel).removeClass(this.editBtnClass).removeClass(this.doneBtnClass).addClass(this.cancelBtnClass);
+            $(this.leftBtnSel).attr('href', '/').html('Cancel');
+            $(this.rightBtnSel).attr('href', '/').html('Save');
+            $(this.rightBtnSel).show();
         },
 
-        renderList: function(){
-            var leftBtn = $('.nav-btn.left');
-            var rightBtn = $('.nav-btn.right');
-
-            $('#nav-title').html('My Appointments');
-            leftBtn.removeClass('cancel').removeClass('done').addClass('edit');
-            rightBtn.removeClass('save').removeClass('save-edit').addClass('add').show();
-            leftBtn.attr('href', '#');
-            rightBtn.attr('href', '/add');
-            leftBtn.html('Edit');
-            rightBtn.html('+').show();
+        renderListNavBar: function(){
+            $('#nav-title').html(this.listViewTitle);
+            $(this.leftBtnSel).removeClass(this.cancelBtnClass).removeClass(this.doneBtnClass).addClass(this.editBtnClass);
+            $(this.rightBtnSel).removeClass(this.saveBtnClass).removeClass(this.saveEditBtnClass).addClass(this.addBtnClass).show();
+            $(this.leftBtnSel).attr('href', '#');
+            $(this.rightBtnSel).attr('href', '/add');
+            $(this.leftBtnSel).html('Edit');
+            $(this.rightBtnSel).html('+').show();
         },
 
         saveAppt: function(){
@@ -67,29 +83,31 @@ define([
         },
 
         renderDeleteIcon: function(){
-            var leftBtn = $('.nav-btn.left');
-            var rightBtn = $('.nav-btn.right');
+            $(this.leftBtnSel).removeClass(this.editBtnClass).addClass(this.doneBtnClass);
+            $(this.rightBtnSel).removeClass(this.addBtnClass).hide();
+            $(this.leftBtnSel).html('Done');
+            $(this.leftBtnSel).attr('href', '/');
 
-            leftBtn.removeClass('edit').addClass('done');
-            rightBtn.removeClass('add').hide();
-            leftBtn.html('Done');
-            leftBtn.attr('href', '/');
-
-            var icon = $('<a>').attr('href', '#').addClass('delete-icon');
-            var edit = $('<span>').addClass('arrow-edit').html('>');
+            var icon = $('<span>').addClass(this.deleteIconClass);
+            var edit = $('<span>').addClass(this.arrowEditClass);
             $('.appt-time').before(edit);
-            $('.appt-row').before(icon);
+            $('.appt-edit-container').before(icon);
 
-            var rows = $('.appt-row');
+            var rows = $('.appt-edit-container');
             _.each(rows, function(row){
                $(row).attr('href', '/appointment/'+$(row).closest('article').attr('id'));
             });
         },
 
         doneEdit: function(){
-            this.renderList();
-            $('.delete-icon').remove();
-            $('.arrow-edit').remove();
+            this.renderListNavBar();
+            $('.' + this.arrowEditClass).remove();
+            $('.' + this.deleteIconClass).remove();
+            $(this.deleteBtnSel).removeClass('active');
+            $('.slide-container').removeClass('active');
+            $(this.deleteBtnSel).bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(){
+                $(this).remove();
+            });
         },
 
         clear: function(){

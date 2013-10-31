@@ -6,39 +6,76 @@ define([
 ], function($, _, Backbone, appointmentListTemplate){
     var AppointmentListView = Backbone.View.extend({
         el: $('#appointments-list-container'),
+
+        // Title
         pageTitle: 'Meet Me',
-        navTitle: 'My Appointments',
+
+        // Class
+        deleteBtnClass: 'delete-btn',
 
         initialize: function(){
-            this.collection = null;
+            this.apptCollection = null;
         },
 
         events: {
-            'click .delete-appt': 'deleteAppt'
-        },
-
-        deleteAppt: function(e){
-            var id = $(e.target).attr('id');
-            this.collection.get(id).destroy();
+            'click .delete-btn': 'deleteAppt',
+            'click .delete-icon': 'renderDeleteButton',
+            'click .appt-edit-container': 'removeDeleteButton'
         },
 
         render: function(){
-            this.renderNavBar();
+            $(document).attr('title', 'Meet Me');
             var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
             $(this.el).html(compiledTemplate);
             _.bindAll(this, 'render');
-            this.collection.bind('remove', this.render);
+            this.apptCollection.bind('remove', this.render);
             return this;
         },
 
-        renderNavBar: function(){
-
-        },
-
         orderByDate: function(){
-            var sortData = _(this.collection.toJSON()).chain().sortBy('startTime')
+            var sortData = _(this.apptCollection.toJSON()).chain().sortBy('startTime')
                 .sortBy('startDate').groupBy('startDateFormat').value();
             return sortData;
+        },
+
+        renderDeleteButton: function(ev){
+            this.removeDeleteButton();
+            var btn = $('<span>').addClass(this.deleteBtnClass).html('Delete');
+            $(ev.target).closest('article').append(btn);
+            // Focus to make the transition works
+            btn.focus();
+            btn.addClass('active');
+            $(ev.target).closest('div.slide-container').addClass('active');
+
+            this.toggleHrefEditContainer();
+        },
+
+        removeDeleteButton: function(){
+            $('.' + this.deleteBtnClass).removeClass('active');
+            $('.slide-container').removeClass('active');
+            var self = this;
+            $('.' + this.deleteBtnClass).bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(){
+                self.toggleHrefEditContainer();
+                $(this).remove();
+            });
+        },
+
+        toggleHrefEditContainer: function(){
+            var container = $('.appt-edit-container');
+            var href = container.attr('href');
+
+            if(href == '#'){
+                container.attr('href', container.attr('id'));
+                container.removeAttr('id');
+            } else {
+                container.attr('href', '#');
+                container.attr('id', href);
+            }
+        },
+
+        deleteAppt: function(e){
+            var id = $(e.target).closest('article').attr('id');
+            this.apptCollection.get(id).destroy();
         },
 
         clear: function(){

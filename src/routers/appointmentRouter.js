@@ -3,14 +3,13 @@ define([
     'views/navigationBarView',
     'views/appointment/appointmentListView',
     'views/appointment/appointmentAddEditView',
-    'collections/appointmentCollection',
-    'models/appointment'
-], function(Backbone, NavigationBarView, AppointmentListView, AppointmentAddEditView, AppointmentCollection, AppointmentModel){
+    'collections/appointmentCollection'
+], function(Backbone, NavigationBarView, AppointmentListView, AppointmentAddEditView, AppointmentCollection){
     var AppointmentRouter = Backbone.Router.extend({
        routes: {
            '': 'index',
-           'add': 'addAppt',
-           'appointment/:id': 'editAppt',
+           'add': 'add',
+           'appointment/:id': 'edit',
            '*path': 'defaultRoute'
        },
 
@@ -31,26 +30,25 @@ define([
         },
 
         'index': function(){
-            console.log('index page');
             this.addView.clear();
             this.collection.fetch();
-            this.listView.collection = this.collection;
+            this.listView.apptCollection = this.collection;
             this.navBarView.render();
             this.listView.render();
         },
 
-        'editAppt': function(id){
+        'edit': function(id){
             this.listView.clear();
-            this.editView.collection = this.collection;
-            this.editView.model = this.collection.get(id);
-            this.navBarView.renderAddEdit(this.navBarView.editType);
+            this.editView.apptCollection = this.collection;
+            this.editView.apptModel = this.collection.get(id);
+            this.navBarView.renderAddEditNavBar(this.navBarView.editType);
             this.editView.render();
         },
 
-        'addAppt': function(){
+        'add': function(){
             this.listView.clear();
-            this.addView.collection = this.collection;
-            this.navBarView.renderAddEdit(this.navBarView.addType);
+            this.addView.apptCollection = this.collection;
+            this.navBarView.renderAddEditNavBar(this.navBarView.addType);
             this.addView.render();
         },
 

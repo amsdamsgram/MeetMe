@@ -3,13 +3,12 @@
         <div class="appt-day"><%=value%></div>
             <% _.each(appts, function(appt){ %>
                 <article id="<%=appt.id%>">
-                    <a class="appt-row">
-                        <span class="appt-title"><%=appt.title%></span>
-                        <span class="appt-time"><%=appt.startTime%></span>
-                        <div class="clear"></div>
-                        <!--<a href="/appointment/<%=appt.id%>">Edit</a>
-                        <a href="#" class="delete-appt" id="<%=appt.id%>">Delete</a>-->
-                    </a>
+                    <div class="slide-container">
+                        <a class="appt-edit-container">
+                            <span class="appt-title"><%=appt.title%></span>
+                            <span class="appt-time"><%=appt.startTime%></span>
+                        </a>
+                    </div>
                 </article>
             <% }); %>
         </div>

@@ -31,6 +31,10 @@ body {
     font-family: 'Proxima Regular';
 }
 
+.clear{
+    clear: both;
+}
+
 .wrap{
     width: 320px;
     height: 600px;
@@ -88,6 +92,7 @@ section .appt-day{
 article{
     background-color: white;
     border-bottom: solid #999999 1px;
+    position: relative;
 }
 
 article:last-child{
@@ -115,15 +120,51 @@ article .delete-icon{
     height: 25px;
     padding: 13px;
     background-position: 13px;
+    cursor: pointer;
 }
 
 article .arrow-edit{
-    color: black;
     float: right;
     margin-right: 15px;
+    background-image: url("../images/arrow-forward.png");
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 25px;
 }
 
-article .appt-row{
+
+article .slide-container{
+    transition-property: all;
+    transition-duration: .2s;
+    transition-timing-function: ease-in;
+    transition-delay: 0;
+    position: relative;
+}
+
+article .slide-container.active{
+    right: 75px;
+}
+
+
+article .delete-btn{
+    transition-property: all;
+    transition-duration: .2s;
+    transition-timing-function: ease-in;
+    transition-delay: 0;
+    position: absolute;
+    top: 0px;
+    right: -75px;
+    padding: 15px;
+    background-color: red;
+    cursor: pointer;
+    color: white;
+}
+
+article .delete-btn.active{
+    right: 0;
+}
+
+article .appt-edit-container{
     padding: 15px 0;
     display: block;
     margin-left: 15px;

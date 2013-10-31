@@ -13,7 +13,7 @@ define([
     };
 
     var initEventHandler = function(){
-      $(document).on('click', 'a', function(){
+      $(document).on('click', 'a', function(e){
         var href = $(this).attr('href');
           if(href != '#'){
               Backbone.history.navigate(href, {trigger: true});

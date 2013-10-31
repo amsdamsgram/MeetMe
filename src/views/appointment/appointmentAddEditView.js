@@ -10,14 +10,15 @@ define([
         formId: '#appt-form',
         editType: 'Edit',
         addType: 'Add',
+        currentDate: moment().format('YYYY-MM-DD'),
 
         events:{
             'focus .placeholder': 'placeholderTrigger'
         },
 
         initialize: function(){
-            this.collection = null;
-            this.model = null;
+            this.apptCollection = null;
+            this.apptModel = null;
         },
 
         placeholderTrigger: function(ev){
@@ -35,7 +36,7 @@ define([
             var startDateFormat = moment(startDate).format('dddd, MMM D, YYYY');
 
             if(this.type == this.addType){
-                this.collection.create({
+                this.apptCollection.create({
                                         title: title,
                                         startDate: startDate,
                                         startDateFormat: startDateFormat,
@@ -46,7 +47,7 @@ define([
             }
 
             if(this.type == this.editType){
-                this.model.save({
+                this.apptModel.save({
                                   title: title,
                                   startDate: startDate,
                                   startDateFormat: startDateFormat,
@@ -59,7 +60,7 @@ define([
 
         render: function(){
             $(document).attr('title', 'Meet Me - ' + this.type);
-            var compiledTemplate = _.template(appointmentTemplate, {appt: this.model});
+            var compiledTemplate = _.template(appointmentTemplate, {appt: this.apptModel, currentDate: this.currentDate});
             $(this.el).html(compiledTemplate);
             _.bindAll(this, 'render');
             return this;
