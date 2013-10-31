@@ -87,8 +87,8 @@ section:last-child{
 section .appt-day{
     background-color: #5a5651;
     color: white;
-    font-size: 11px;
-    padding: 3px 10px;
+    font-size: 10px;
+    padding: 2px 10px;
 }
 
 /* APPOINTMENT */
@@ -193,7 +193,7 @@ article .appt-edit-container{
 }
 
 #appt-form input#start-date{
-    width: 55%;
+    width: 54%;
     float: left;
 }
 
