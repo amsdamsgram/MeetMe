@@ -5,7 +5,7 @@
                 <article id="<%=appt.id%>">
                     <div class="slide-container">
                         <a class="appt-edit-container">
-                            <span class="appt-title"><%=appt.title%></span>
+                            <span class="appt-title"><%=appt.title.length > 23?appt.title.slice(0, 23)+'...':appt.title%></span>
                             <span class="appt-time"><%=appt.startTime%></span>
                         </a>
                     </div>

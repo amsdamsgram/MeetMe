@@ -11,9 +11,12 @@ define([
         editType: 'Edit',
         addType: 'Add',
         currentDate: moment().format('YYYY-MM-DD'),
+        defaultStartTime: '01:00PM',
+        defaultEndTime: '02:00PM',
 
         events:{
-            'focus .placeholder': 'placeholderTrigger'
+            'focus .placeholder': 'placeholderTrigger',
+            'blur #start-time': 'setMinEndTime'
         },
 
         initialize: function(){
@@ -60,10 +63,42 @@ define([
 
         render: function(){
             $(document).attr('title', 'Meet Me - ' + this.type);
-            var compiledTemplate = _.template(appointmentTemplate, {appt: this.apptModel, currentDate: this.currentDate});
+            this.checkInputTimeFormat();
+            var compiledTemplate = _.template(appointmentTemplate, {appt: this.apptModel,
+                                                                    currentDate: this.currentDate,
+                                                                    defaultStartTime: this.defaultStartTime,
+                                                                    defaultEndTime: this.defaultEndTime});
             $(this.el).html(compiledTemplate);
             _.bindAll(this, 'render');
             return this;
+        },
+
+        setMinEndTime: function(){
+            var startTime = $(this.formId + ' #start-time').val();
+            $(this.formId + ' #end-time').val(startTime);
+
+        },
+
+        checkInputTimeFormat: function(){
+            // Not sure about input [type=time] format 12 or 24
+            $(this.formId + '#start-time').val(this.defaultStartTime);
+            if(!$(this.formId + '#start-time').val()){
+                this.defaultStartTime = this.time12Hoursto24Hours(this.defaultStartTime);
+                this.defaultEndTime = this.time12Hoursto24Hours(this.defaultEndTime);
+            }
+        },
+
+        // Format hh:mmPM
+        time12Hoursto24Hours: function(fullTime){
+            var period = fullTime.slice(-2);
+            var time = fullTime.substr(0, fullTime.length - 2);
+            var timeArray = time.split(':');
+
+            if(period == 'PM'){
+                return parseInt(timeArray[0])+12+':'+timeArray[1];
+            } else {
+                return time;
+            }
         },
 
         clear: function(){

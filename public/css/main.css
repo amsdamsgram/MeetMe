@@ -19,6 +19,8 @@ html,body,div,span,input,textarea,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,block
     src: url('../fonts/proximanova-semibold-webfont.ttf');
     font-family: 'Proxima Bold';
     src: url('../fonts/proximanova-bold-webfont.ttf');
+    font-family: 'Proxima Light';
+    src: url('../fonts/proximanova-light-webfont.ttf');
 }
 
 a{
@@ -28,7 +30,7 @@ a{
 
 body {
 	line-height: 1.4;
-    font-family: 'Proxima Regular';
+    font-family: 'Proxima Light';
 }
 
 .clear{
@@ -41,7 +43,7 @@ body {
     margin: 0 auto;
     border: black solid 1px;
     background-color: #dddddd;
-    overflow: scroll;
+    overflow: auto;
 }
 
 /* NAVIGATION BAR */
@@ -50,6 +52,7 @@ nav{
     color: white;
     padding: 10px 0;
     position: relative;
+    font-family: "Proxima Regular";
 }
 
 .nav-btn.left{
@@ -71,7 +74,7 @@ nav{
 
 #nav-title{
     position: absolute;
-    left: 100px;
+    left: 34%;
 }
 
 /******* LIST VIEW *******/
@@ -84,8 +87,8 @@ section:last-child{
 section .appt-day{
     background-color: #5a5651;
     color: white;
-    font-size: 10px;
-    padding: 5px 10px;
+    font-size: 11px;
+    padding: 3px 10px;
 }
 
 /* APPOINTMENT */
@@ -100,7 +103,7 @@ article:last-child{
 }
 
 article .appt-title{
-    font-size: 14px;
+    font-size: 16px;
     color: #333333;
 }
 
@@ -116,20 +119,21 @@ article .delete-icon{
     float: left;
     background-image: url("../images/delete-icon.png");
     background-repeat: no-repeat;
-    width: 25px;
-    height: 25px;
-    padding: 13px;
-    background-position: 13px;
+    width: 24px;
+    height: 24px;
+    padding: 9px;
+    background-position: 11px;
     cursor: pointer;
 }
 
 article .arrow-edit{
     float: right;
-    margin-right: 15px;
+    margin-right: 5px;
     background-image: url("../images/arrow-forward.png");
     background-repeat: no-repeat;
+    background-position: 0 3px;
     width: 20px;
-    height: 25px;
+    height: 20px;
 }
 
 
@@ -142,7 +146,7 @@ article .slide-container{
 }
 
 article .slide-container.active{
-    right: 75px;
+    right: 26%;
 }
 
 
@@ -153,11 +157,12 @@ article .delete-btn{
     transition-delay: 0;
     position: absolute;
     top: 0px;
-    right: -75px;
-    padding: 15px;
+    right: -22%;
+    padding: 10px 22px;
     background-color: red;
     cursor: pointer;
     color: white;
+    font-family: "Proxima Regular";
 }
 
 article .delete-btn.active{
@@ -165,7 +170,7 @@ article .delete-btn.active{
 }
 
 article .appt-edit-container{
-    padding: 15px 0;
+    padding: 10px 0;
     display: block;
     margin-left: 15px;
 }
@@ -188,17 +193,17 @@ article .appt-edit-container{
 }
 
 #appt-form input#start-date{
-    width: 180px;
+    width: 55%;
+    float: left;
 }
 
 #appt-form .at{
     border-top: 1px solid #999999;
-    border-bottom: 1px solid #999999;
-    padding: 23px 0;
+    padding: 22px 0;
 }
 
 #appt-form input#start-time{
-    width: 120px;
+    width: 40%;
 }
 
 #appt-form textarea{
@@ -222,6 +227,6 @@ input:-moz-placeholder { font-style: italic; color: #999999; }
     position: absolute;
     padding: 20px;
     background-color: white;
-    width: 87%;
+    left: 0;
 }
 

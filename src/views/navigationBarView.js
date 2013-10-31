@@ -74,6 +74,13 @@ define([
             $(this.rightBtnSel).html('+').show();
         },
 
+        renderDoneNavBar: function(){
+            $(this.leftBtnSel).removeClass(this.editBtnClass).addClass(this.doneBtnClass);
+            $(this.rightBtnSel).removeClass(this.addBtnClass).hide();
+            $(this.leftBtnSel).html('Done');
+            $(this.leftBtnSel).attr('href', '/');
+        },
+
         saveAppt: function(){
             this.addView.addEditAppt();
         },
@@ -83,15 +90,12 @@ define([
         },
 
         renderDeleteIcon: function(){
-            $(this.leftBtnSel).removeClass(this.editBtnClass).addClass(this.doneBtnClass);
-            $(this.rightBtnSel).removeClass(this.addBtnClass).hide();
-            $(this.leftBtnSel).html('Done');
-            $(this.leftBtnSel).attr('href', '/');
+            this.renderDoneNavBar();
 
-            var icon = $('<span>').addClass(this.deleteIconClass);
-            var edit = $('<span>').addClass(this.arrowEditClass);
-            $('.appt-time').before(edit);
-            $('.appt-edit-container').before(icon);
+            var deleteIcon = $('<span>').addClass(this.deleteIconClass);
+            var editArrow = $('<span>').addClass(this.arrowEditClass);
+            $('.appt-time').before(editArrow);
+            $('.appt-edit-container').before(deleteIcon);
 
             var rows = $('.appt-edit-container');
             _.each(rows, function(row){
@@ -101,6 +105,7 @@ define([
 
         doneEdit: function(){
             this.renderListNavBar();
+
             $('.' + this.arrowEditClass).remove();
             $('.' + this.deleteIconClass).remove();
             $(this.deleteBtnSel).removeClass('active');

@@ -4,15 +4,15 @@
         <% if (!appt) { %>
             <input type="text" class="placeholder" placeholder="Start Date & Time" />
         <% } %>
-        <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate : currentDate%>" />
+        <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate:currentDate%>" />
         <span class="at"> at </span>
-        <input type="time" id="start-time" name="start_time" value="<%= appt ? appt.attributes.startTime:''%>" />
+        <input type="time" id="start-time" name="start_time" value="<%= appt ? appt.attributes.startTime:defaultStartTime%>" />
     </div>
     <div class="end">
         <% if (!appt) { %>
             <input type="text" class="placeholder" placeholder="End Time" />
         <% } %>
-        <input type="time" id="end-time" name="end_time" value="<%= appt ? appt.attributes.endTime:''%>" />
+        <input type="time" id="end-time" name="end_time" value="<%= appt ? appt.attributes.endTime:defaultEndTime%>" />
     </div>
     <input type="text" id="name" name="name" value="<%= appt ? appt.attributes.name:''%>" placeholder="Appointment with..."/>
     <textarea id="desc" name="desc" placeholder="Description" rows="8"><%= appt ? appt.attributes.description:''%></textarea>

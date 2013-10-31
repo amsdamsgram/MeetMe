@@ -5,7 +5,7 @@ define([
 ], function($, _, Backbone){
     var Appointment = Backbone.Model.extend({
         defaults: {
-            title: "No Title",
+            title: "New Appointment",
             startDate: "",
             startDateFormat: "",
             startTime: "",
