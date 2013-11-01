@@ -182,7 +182,7 @@ article .appt-edit-container{
 }
 
 #appt-form input, #appt-form textarea{
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     border-top: 1px solid #999999;
     outline: none;
@@ -199,7 +199,7 @@ article .appt-edit-container{
 
 #appt-form .at{
     border-top: 1px solid #999999;
-    padding: 22px 0;
+    padding: 17px 0;
 }
 
 #appt-form input#start-time{
@@ -208,7 +208,7 @@ article .appt-edit-container{
 
 #appt-form textarea{
     resize: none;
-    height: 295px;
+    height: 335px;
 }
 
 /* PLACEHOLDER */

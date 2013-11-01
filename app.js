@@ -5,11 +5,16 @@ define([
 ], function(Backbone, Router, $){
     var initialize = function(){
         initRouter();
+        initHistory();
         initEventHandler();
     };
 
     var initRouter = function(){
         new Router();
+    };
+
+    var initHistory = function(){
+        Backbone.history.start({ pushState: true});
     };
 
     var initEventHandler = function(){

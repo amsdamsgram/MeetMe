@@ -15,5 +15,5 @@
         <input type="time" id="end-time" name="end_time" value="<%= appt ? appt.attributes.endTime:defaultEndTime%>" />
     </div>
     <input type="text" id="name" name="name" value="<%= appt ? appt.attributes.name:''%>" placeholder="Appointment with..."/>
-    <textarea id="desc" name="desc" placeholder="Description" rows="8"><%= appt ? appt.attributes.description:''%></textarea>
+    <textarea id="desc" name="desc" placeholder="Description" rows="13"><%= appt ? appt.attributes.description:''%></textarea>
 </form>

@@ -10,7 +10,6 @@ define([
         localStorage: new LocalStorage('appointmentsCollection'),
 
         initialize: function(){
-            console.log("Creation of a new Collection");
         }
     });
     return AppointmentCollection;

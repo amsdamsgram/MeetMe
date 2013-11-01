@@ -45,7 +45,6 @@ define([
             this.renderListNavBar();
             var compiledTemplate = _.template(appointmentListTemplate);
             $(this.el).html(compiledTemplate);
-            _.bindAll(this, 'render');
             return this;
         },
 

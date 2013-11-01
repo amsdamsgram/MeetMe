@@ -13,8 +13,9 @@ define([
         // Class
         deleteBtnClass: 'delete-btn',
 
-        initialize: function(){
-            this.apptCollection = null;
+        initialize: function(collection, navBarView){
+            this.apptCollection = collection;
+            this.navBarView = navBarView;
         },
 
         events: {
@@ -27,6 +28,8 @@ define([
             $(document).attr('title', 'Meet Me');
             var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
             $(this.el).html(compiledTemplate);
+            if(!$('.nav-btn.right').is(':visible'))
+                this.navBarView.renderDeleteIcon();
             _.bindAll(this, 'render');
             this.apptCollection.bind('remove', this.render);
             return this;

@@ -14,16 +14,16 @@ define([
         defaultEndTime: '14:00',
 
         events:{
-            'focus .placeholder': 'placeholderTrigger',
+            'focus .placeholder': 'hidePlaceholder',
             'blur #start-time': 'setMinEndTime'
         },
 
-        initialize: function(){
-            this.apptCollection = null;
+        initialize: function(collection){
+            this.apptCollection = collection;
             this.apptModel = null;
         },
 
-        placeholderTrigger: function(ev){
+        hidePlaceholder: function(ev){
             $(ev.target).hide();
         },
 
