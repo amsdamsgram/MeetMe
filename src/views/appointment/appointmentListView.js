@@ -138,18 +138,15 @@ define([
             $('.appt-time').before(editArrow);
             $('.appt-edit-container').before(deleteIcon);
 
-            this.animateDeleteIcon();
+            this.transitionDeleteIcon();
 
             var rows = $('.appt-edit-container');
             _.each(rows, function(row){
                 $(row).attr('href', '/appointment/'+$(row).closest('article').attr('id'));
-                var arrow = $(row).find('.'+this.arrowEditClass);
-                $(arrow).focus();
-                $(arrow).css('right', 0);
             });
         },
 
-        animateDeleteIcon: function(){
+        transitionDeleteIcon: function(){
             var icons = $('.'+this.deleteIconClass);
             _.each(icons, function(icon){
                 $(icon).focus();
