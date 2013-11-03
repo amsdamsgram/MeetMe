@@ -19,32 +19,23 @@ define([
 
             this.navBarView = new NavigationBarView();
             this.listView = new AppointmentListView(this.collection, this.navBarView);
-            this.editView = new AppointmentAddEditView(this.collection);
-            this.addView = new AppointmentAddEditView(this.collection);
-
-            this.editView.type = this.editView.editType;
-            this.addView.type = this.addView.addType;
-
-            this.navBarView.addView = this.addView;
-            this.navBarView.editView = this.editView;
+            this.editView = new AppointmentAddEditView(this.collection, this.navBarView);
+            this.addView = new AppointmentAddEditView(this.collection, this.navBarView);
         },
 
         'index': function(){
             this.addView.clear();
-            this.navBarView.render();
             this.listView.render();
         },
 
         'edit': function(id){
             this.listView.clear();
             this.editView.apptModel = this.collection.get(id);
-            this.navBarView.renderAddEditNavBar(this.navBarView.editType);
             this.editView.render();
         },
 
         'add': function(){
             this.listView.clear();
-            this.navBarView.renderAddEditNavBar(this.navBarView.addType);
             this.addView.render();
         },
 

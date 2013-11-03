@@ -1,5 +1,7 @@
 <nav>
-    <a href="#" class="nav-btn left edit">Edit</a>
-    <a href="/add" class="nav-btn right add">+</a>
-    <span id="nav-title">My Appointments</span>
+    <a href="<%=leftBtn.action%>" class="nav-btn left <%=leftBtn.class%>"><%=leftBtn.label%></a>
+    <%if(typeof rightBtn != "undefined"){%>
+    <a href="<%=rightBtn.action%>" class="nav-btn right <%=rightBtn.class%>"><%=rightBtn.label%></a>
+    <%}%>
+    <span id="nav-title"><%=title%></span>
 </nav>

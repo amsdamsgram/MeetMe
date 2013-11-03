@@ -8,14 +8,18 @@ define([
         el: $('#appointments-list-container'),
 
         // Title
-        pageTitle: 'Meet Me',
+        viewTitle: 'Meet Me',
+        barTitle: 'My Appointments',
 
         // Class
         deleteBtnClass: 'delete-btn',
+        deleteIconClass: 'delete-icon',
+        arrowEditClass: 'arrow-edit',
 
         initialize: function(collection, navBarView){
             this.apptCollection = collection;
             this.navBarView = navBarView;
+            this.editState = false;
         },
 
         events: {
@@ -24,12 +28,63 @@ define([
             'click .appt-edit-container': 'removeDeleteButton'
         },
 
+        renderEditState: function() {
+            this.editState = true;
+            this.render();
+        },
+
+        renderEditNavBar: function(){
+            var view = this;
+            this.navBarView.leftBtn = {
+                'label': 'Edit',
+                'action': '#',
+                'class': '',
+                'callback': function() {
+                    view.renderEditState();
+                }
+            };
+            this.navBarView.rightBtn = {
+                'label': '+',
+                'action': '/add',
+                'class': 'add',
+                'callback' : function() {
+                }
+            };
+            this.navBarView.render();
+        },
+
+        renderDoneNavBar: function(){
+            var view = this;
+            view.navBarView.leftBtn = {
+                'label' : 'Done',
+                'action' : '#',
+                'class': '',
+                'callback' : function() {
+                    view.editState = false;
+                    view.render();
+                }
+            };
+            view.navBarView.rightBtn = {
+                'label' : '',
+                'action' : '#',
+                'class': '',
+                'callback' : function() {
+                }
+            };
+            this.navBarView.render();
+        },
+
         render: function(){
-            $(document).attr('title', 'Meet Me');
+            this.navBarView.title = this.barTitle;
+            $(document).attr('title', this.viewTitle);
             var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
             $(this.el).html(compiledTemplate);
-            if(!$('.nav-btn.right').is(':visible'))
-                this.navBarView.renderDeleteIcon();
+            if(this.editState){
+                this.renderDeleteIcon();
+                this.renderDoneNavBar();
+            } else {
+                this.renderEditNavBar();
+            }
             _.bindAll(this, 'render');
             this.apptCollection.bind('remove', this.render);
             return this;
@@ -45,20 +100,21 @@ define([
             this.removeDeleteButton();
             var btn = $('<span>').addClass(this.deleteBtnClass).html('Delete');
             $(ev.target).closest('article').append(btn);
+
             // Focus to make the transition works
             btn.focus();
-            btn.addClass('active');
-            $(ev.target).closest('div.slide-container').addClass('active');
+            btn.css('right', 0);
+            $(ev.target).closest('div.slide-container').css('right', '26%');
 
             this.toggleHrefEditContainer();
         },
 
         removeDeleteButton: function(){
-            $('.' + this.deleteBtnClass).removeClass('active');
-            $('.slide-container').removeClass('active');
-            var self = this;
+            $('.' + this.deleteBtnClass).css('right', "-22%");
+            $('.slide-container').css('right', 0);
+            var view = this;
             $('.' + this.deleteBtnClass).bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(){
-                self.toggleHrefEditContainer();
+                view.toggleHrefEditContainer();
                 $(this).remove();
             });
         },
@@ -75,6 +131,40 @@ define([
                 container.attr('id', href);
             }
         },
+
+        renderDeleteIcon: function(){
+            var deleteIcon = $('<span>').addClass(this.deleteIconClass);
+            var editArrow = $('<span>').addClass(this.arrowEditClass);
+            $('.appt-time').before(editArrow);
+            $('.appt-edit-container').before(deleteIcon);
+
+            this.animateDeleteIcon();
+
+            var rows = $('.appt-edit-container');
+            _.each(rows, function(row){
+                $(row).attr('href', '/appointment/'+$(row).closest('article').attr('id'));
+                var arrow = $(row).find('.'+this.arrowEditClass);
+                $(arrow).focus();
+                $(arrow).css('right', 0);
+            });
+        },
+
+        animateDeleteIcon: function(){
+            var icons = $('.'+this.deleteIconClass);
+            _.each(icons, function(icon){
+                $(icon).focus();
+                $(icon).css('left', 0);
+
+            });
+
+            var arrows = $('.'+this.arrowEditClass);
+            _.each(arrows, function(arrow){
+                $(arrow).focus();
+                $(arrow).css('right', 0);
+
+            });
+        },
+
 
         deleteAppt: function(e){
             var id = $(e.target).closest('article').attr('id');

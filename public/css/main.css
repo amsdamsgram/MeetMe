@@ -46,7 +46,7 @@ body {
     overflow: auto;
 }
 
-/* NAVIGATION BAR */
+/******* NAVIGATION BAR *******/
 nav{
     background-color: #4daf7b;
     color: white;
@@ -117,44 +117,46 @@ article .appt-time{
 
 article .delete-icon{
     float: left;
-    background-image: url("../images/delete-icon.png");
-    background-repeat: no-repeat;
+    background: url("../images/delete-icon.png") no-repeat 11px;
     width: 24px;
     height: 24px;
     padding: 9px;
-    background-position: 11px;
     cursor: pointer;
+    position: relative;
+    left: -42px;
+    transition: left 0.2s linear;
+    -moz-transition: left 0.2s linear;
+    -webkit-transition: left 0.2s linear;
+    -o-transition: left 0.2s linear;
 }
 
 article .arrow-edit{
     float: right;
     margin-right: 5px;
-    background-image: url("../images/arrow-forward.png");
-    background-repeat: no-repeat;
-    background-position: 0 3px;
+    background: url("../images/arrow-forward.png") no-repeat 0 3px;
     width: 20px;
     height: 20px;
+    position: relative;
+    right: -25px;
+    transition: right 0.2s linear;
+    -moz-transition: right 0.2s linear;
+    -webkit-transition: right 0.2s linear;
+    -o-transition: right 0.2s linear;
 }
 
-
 article .slide-container{
-    transition-property: all;
-    transition-duration: .2s;
-    transition-timing-function: ease-in;
-    transition-delay: 0;
+    transition: right 0.2s ease-in;
+    -moz-transition: right 0.2s ease-in;
+    -webkit-transition: right 0.2s ease-in;
+    -o-transition: right 0.2s ease-in;
     position: relative;
 }
 
-article .slide-container.active{
-    right: 26%;
-}
-
-
 article .delete-btn{
-    transition-property: all;
-    transition-duration: .2s;
-    transition-timing-function: ease-in;
-    transition-delay: 0;
+    transition: right 0.2s ease-in;
+    -moz-transition: right 0.2s ease-in;
+    -webkit-transition: right 0.2s ease-in;
+    -o-transition: right 0.2s ease-in;
     position: absolute;
     top: 0px;
     right: -22%;
@@ -163,10 +165,6 @@ article .delete-btn{
     cursor: pointer;
     color: white;
     font-family: "Proxima Regular";
-}
-
-article .delete-btn.active{
-    right: 0;
 }
 
 article .appt-edit-container{
@@ -181,7 +179,7 @@ article .appt-edit-container{
     background-color: white;
 }
 
-#appt-form input, #appt-form textarea{
+form input, textarea{
     padding: 15px;
     width: 100%;
     border-top: 1px solid #999999;
@@ -192,21 +190,21 @@ article .appt-edit-container{
     -webkit-box-sizing: border-box;
 }
 
-#appt-form input#start-date{
+form input#start-date{
     width: 54%;
     float: left;
 }
 
-#appt-form .at{
+form .at{
     border-top: 1px solid #999999;
     padding: 17px 0;
 }
 
-#appt-form input#start-time{
+form input#start-time{
     width: 40%;
 }
 
-#appt-form textarea{
+form textarea{
     resize: none;
     height: 335px;
 }
@@ -225,7 +223,7 @@ input:-moz-placeholder { font-style: italic; color: #999999; }
     font-style: italic;
     color: #999999;
     position: absolute;
-    padding: 20px;
+    padding: 16px;
     background-color: white;
     left: 0;
 }
