@@ -33,7 +33,7 @@ define([
             this.render();
         },
 
-        renderEditNavBar: function(){
+        renderListNavBar: function(){
             var view = this;
             this.navBarView.leftBtn = {
                 'label': 'Edit',
@@ -83,7 +83,7 @@ define([
                 this.renderDeleteIcon();
                 this.renderDoneNavBar();
             } else {
-                this.renderEditNavBar();
+                this.renderListNavBar();
             }
             _.bindAll(this, 'render');
             this.apptCollection.bind('remove', this.render);
@@ -152,13 +152,9 @@ define([
                 $(icon).focus();
                 $(icon).css('left', 0);
 
-            });
-
-            var arrows = $('.'+this.arrowEditClass);
-            _.each(arrows, function(arrow){
+                var arrow = $(icon).closest('div.slide-container').find('.arrow-edit');
                 $(arrow).focus();
                 $(arrow).css('right', 0);
-
             });
         },
 

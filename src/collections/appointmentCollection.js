@@ -26,6 +26,12 @@ define([
             var name = $('#name').val();
             var desc = $('#desc').val();
 
+            // Only working with 24 hours format
+            if(startTime > endTime){
+                alert('Start time must be before end time');
+                return;
+            }
+
             var startDateFormat = moment(startDate).format('dddd, MMM D, YYYY').toUpperCase();
             var params = {title: title,
                 startDate: startDate,

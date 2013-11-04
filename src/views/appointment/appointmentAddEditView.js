@@ -8,12 +8,15 @@ define([
     var AppointmentAddView = Backbone.View.extend({
         el: $('#appointment-add-container'),
 
+        // View Title
         editViewTitle: 'Meet Me - Edit',
         addViewTitle: 'Meet Me - Add',
 
+        // Nav Bar Title
         addBarTitle: 'New Appointment',
         editBarTitle: 'Edit Appointment',
 
+        // Default Parameters
         currentDate: moment().format('YYYY-MM-DD'),
         defaultStartTime: '13:00',
         defaultEndTime: '14:00',

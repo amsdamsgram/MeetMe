@@ -15,8 +15,6 @@ html,body,div,span,input,textarea,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,block
 @font-face {
     font-family: 'Proxima Regular';
     src: url('../fonts/proximanova-regular-webfont.ttf');
-    font-family: 'Proxima Semi-Bold';
-    src: url('../fonts/proximanova-semibold-webfont.ttf');
     font-family: 'Proxima Bold';
     src: url('../fonts/proximanova-bold-webfont.ttf');
     font-family: 'Proxima Light';
