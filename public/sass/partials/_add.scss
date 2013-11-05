@@ -1,0 +1,56 @@
+#appointment-add-container{
+  background-color: white;
+}
+
+form {
+
+  input, %formInput{
+    padding: 15px;
+    width: 100%;
+    border-top: 1px solid $borderColor;
+    outline: none;
+    /* Use width 100% with padding */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+
+  input#start-date{
+    width: 54%;
+    float: left;
+  }
+
+  .at{
+    border-top: 1px solid $borderColor;
+    padding: 17px 0;
+  }
+
+  input#start-time{
+    width: 40%;
+  }
+
+  textarea{
+    @extend %formInput;
+    resize: none;
+    height: 335px;
+  }
+}
+
+/* PLACEHOLDER */
+::-webkit-input-placeholder { font-style: italic; color: #999999; }
+::-moz-placeholder { font-style: italic; color: #999999; }
+:-ms-input-placeholder { font-style: italic; color: #999999; }
+input:-moz-placeholder { font-style: italic; color: #999999; }
+
+.start, .end{
+  position: relative;
+}
+
+.placeholder{
+  font-style: italic;
+  color: #999999;
+  position: absolute;
+  padding: 16px;
+  background-color: white;
+  left: 0;
+}

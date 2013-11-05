@@ -1,0 +1,32 @@
+nav{
+  background-color: $navBarColor;
+  color: white;
+  padding: 10px 0;
+  position: relative;
+  font-family: "Proxima Regular";
+}
+
+.nav-btn{
+
+  &.left{
+    padding: 10px;
+  }
+
+  &.right{
+    float: right;
+    padding: 0 10px;
+  }
+
+  &.add{
+    font-family: "Proxima Bold";
+    font-size: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+#nav-title{
+  position: absolute;
+  left: 34%;
+}
