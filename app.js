@@ -2,9 +2,11 @@ define([
     'backbone',
     'routers/appointmentRouter',
     'jquery',
+    'i18n'
 ], function(Backbone, Router, $){
     var initialize = function(){
         initRouter();
+        initI18n();
         initHistory();
         initEventHandler();
     };
@@ -15,6 +17,20 @@ define([
 
     var initHistory = function(){
         Backbone.history.start({ pushState: true});
+    };
+
+    var initI18n = function(){
+        $.i18n.init({
+            lng: 'fr',
+            fallbackLng: 'fr',
+            useLocalStorage: false, //set true for production
+            resGetPath: 'public/locales/__lng__/__ns__.json',
+            ns: {
+                    namespaces: ['buttons', 'titles'],
+                    defaultNs: 'buttons'
+                },
+            getAsync: false //don't block until all resources are loaded
+        });
     };
 
     var initEventHandler = function(){

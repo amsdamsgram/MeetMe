@@ -1,0 +1,16 @@
+{
+    "list":{
+        "nav": "My Appointments",
+        "window": "Meet Me"
+    },
+
+    "add":{
+        "nav": "New Appointment",
+        "window": "Meet Me - Add"
+    },
+
+    "edit":{
+        "nav": "Edit Appointment",
+        "window": "Meet Me - Edit"
+    }
+}

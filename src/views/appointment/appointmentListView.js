@@ -7,10 +7,6 @@ define([
     var AppointmentListView = Backbone.View.extend({
         el: $('#appointments-list-container'),
 
-        // Title
-        viewTitle: 'Meet Me',
-        barTitle: 'My Appointments',
-
         // Class
         deleteBtnClass: 'delete-btn',
         deleteIconClass: 'delete-icon',
@@ -36,7 +32,7 @@ define([
         renderListNavBar: function(){
             var view = this;
             this.navBarView.leftBtn = {
-                'label': 'Edit',
+                'label': $.t('buttons:nav.edit'),
                 'action': '#',
                 'class': '',
                 'callback': function() {
@@ -56,7 +52,7 @@ define([
         renderDoneNavBar: function(){
             var view = this;
             view.navBarView.leftBtn = {
-                'label' : 'Done',
+                'label' : $.t('buttons:nav.done'),
                 'action' : '#',
                 'class': '',
                 'callback' : function() {
@@ -75,8 +71,8 @@ define([
         },
 
         render: function(){
-            this.navBarView.title = this.barTitle;
-            $(document).attr('title', this.viewTitle);
+            this.navBarView.title = $.t('titles:list.nav');
+            $(document).attr('title', $.t('titles:list.window'));
             var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
             $(this.el).html(compiledTemplate);
             if(this.editState){
@@ -98,7 +94,7 @@ define([
 
         renderDeleteButton: function(ev){
             this.removeDeleteButton();
-            var btn = $('<span>').addClass(this.deleteBtnClass).html('Delete');
+            var btn = $('<span>').addClass(this.deleteBtnClass).html($.t('buttons:action.delete'));
             $(ev.target).closest('article').append(btn);
 
             // Focus to make the transition works

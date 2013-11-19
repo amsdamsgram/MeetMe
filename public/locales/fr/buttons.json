@@ -1,0 +1,12 @@
+{
+    "nav":{
+        "edit": "Editer",
+        "done": "Terminer",
+        "cancel": "Annuler",
+        "save": "Sauvegarder"
+    },
+
+    "action":{
+        "delete": "Supprimer"
+    }
+}

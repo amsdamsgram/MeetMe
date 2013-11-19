@@ -25,7 +25,14 @@ define([
             this.$el.find('.right').on('click', function(){
                 view.rightBtn.callback();
             });
+            this.titlePosition();
             return this;
+        },
+
+        titlePosition: function(){
+            var navBarWidth = $('#nav-bar').width();
+            var titleWidthMiddle = $('#nav-title').width() / 2;
+            $('#nav-title').css('left', 50 - ((titleWidthMiddle / navBarWidth) * 100)+'%');
         },
 
         clear: function(){

@@ -1,0 +1,16 @@
+{
+    "list":{
+        "nav": "Mes rendez-vous",
+        "window": "Meet Me"
+    },
+
+    "add":{
+        "nav": "Ajout",
+        "window": "Meet Me - Ajout"
+    },
+
+    "edit":{
+        "nav": "Edition",
+        "window": "Meet Me - Edition"
+    }
+}

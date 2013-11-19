@@ -8,14 +8,6 @@ define([
     var AppointmentAddView = Backbone.View.extend({
         el: $('#appointment-add-container'),
 
-        // View Title
-        editViewTitle: 'Meet Me - Edit',
-        addViewTitle: 'Meet Me - Add',
-
-        // Nav Bar Title
-        addBarTitle: 'New Appointment',
-        editBarTitle: 'Edit Appointment',
-
         // Default Parameters
         currentDate: moment().format('YYYY-MM-DD'),
         defaultStartTime: '13:00',
@@ -39,15 +31,15 @@ define([
         renderAddEditNavBar: function(){
             var view = this;
             if(this.apptModel == null){
-                $(document).attr('title', this.addViewTitle);
-                this.navBarView.title = this.addBarTitle;
+                $(document).attr('title', $.t('titles:add.window'));
+                this.navBarView.title = $.t('titles:add.nav');
             }
             else{
-                $(document).attr('title', this.editViewTitle);
-                this.navBarView.title = this.editBarTitle;
+                $(document).attr('title', $.t('titles:edit.window'));
+                this.navBarView.title = $.t('titles:edit.nav');
             }
             this.navBarView.leftBtn = {
-                'label' : 'Cancel',
+                'label' : $.t('buttons:nav.cancel'),
                 'action' : '/',
                 'class': '',
                 'callback': function() {
@@ -55,7 +47,7 @@ define([
                 }
             };
             this.navBarView.rightBtn = {
-                'label' : 'Save',
+                'label' : $.t('buttons:nav.save'),
                 'action' : '#',
                 'class': '',
                 'callback' : function() {
