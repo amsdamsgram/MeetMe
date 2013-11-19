@@ -21,8 +21,8 @@ define([
 
     var initI18n = function(){
         $.i18n.init({
-            lng: 'fr',
-            fallbackLng: 'fr',
+            lng: 'en',
+            fallbackLng: 'en',
             useLocalStorage: false, //set true for production
             resGetPath: 'public/locales/__lng__/__ns__.json',
             ns: {
