@@ -3,7 +3,7 @@ define([
     'routers/appointmentRouter',
     'jquery',
     'i18n'
-], function(Backbone, Router, $, moment){
+], function(Backbone, Router, $){
     var initialize = function(){
         initRouter();
         initI18n();
