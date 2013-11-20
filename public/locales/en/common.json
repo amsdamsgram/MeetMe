@@ -1,0 +1,29 @@
+{
+    "title":{
+        "list":{
+            "nav": "My Appointments",
+            "window": "Meet Me"
+        },
+
+        "add":{
+            "nav": "New Appointment",
+            "window": "Meet Me - Add"
+        },
+
+        "edit":{
+            "nav": "Edit Appointment",
+            "window": "Meet Me - Edit"
+        }
+    },
+
+    "placeholder":{
+        "title": "Title",
+        "start_date": "Start Date & Time",
+        "end_time": "End Time",
+        "with": "Appointment with..."
+    },
+
+    "footer":{
+        "developed_by": "Developed by"
+    }
+}

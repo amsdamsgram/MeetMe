@@ -1,82 +1,87 @@
-section{
+#appointments-list-container{
+    height: $contentHeight;
+    overflow: auto;
 
-  &:last-child{
+  section{
+
+    &:last-child{
+      border-bottom: solid $borderColor 1px;
+    }
+
+    .appt-day{
+      background-color: $dayBandColor;
+      color: white;
+      font-size: 10px;
+      padding: 2px 10px;
+    }
+  }
+
+  article{
+    background-color: white;
     border-bottom: solid $borderColor 1px;
-  }
-
-  .appt-day{
-    background-color: $dayBandColor;
-    color: white;
-    font-size: 10px;
-    padding: 2px 10px;
-  }
-}
-
-article{
-  background-color: white;
-  border-bottom: solid $borderColor 1px;
-  position: relative;
-
-  &:last-child{
-    border-bottom: none;
-  }
-
-  .appt-title{
-    font-size: 16px;
-    color: $titleApptColor;
-  }
-
-  .appt-time{
-    color: $timeColor;
-    float: right;
-    font-size: 12px;
-    line-height: 22px; /* trick vertical align middle */
-    margin-right: 15px;
-  }
-
-  .delete-icon{
-    float: left;
-    background: url("../images/delete-icon.png") no-repeat 11px;
-    width: 24px;
-    height: 24px;
-    padding: 9px;
-    cursor: pointer;
     position: relative;
-    left: -42px;
-    @include transition(left, 0.2s, linear);
-  }
 
-  .arrow-edit{
-    float: right;
-    margin-right: 5px;
-    background: url("../images/arrow-forward.png") no-repeat 0 3px;
-    width: 20px;
-    height: 20px;
-    position: relative;
-    right: -25px;
-    @include transition(right, 0.2s, linear);
-  }
+    &:last-child{
+      border-bottom: none;
+    }
 
-  .slide-container{
-    @include transition(right, 0.2s, ease-in);
-    position: relative;
-  }
+    .appt-title{
+      font-size: 16px;
+      color: $titleApptColor;
+    }
 
-  .delete-btn{
-    @include transition(right, 0.2s, ease-in);
-    position: absolute;
-    top: 0px;
-    right: -22%;
-    padding: 10px 22px;
-    background-color: red;
-    cursor: pointer;
-    color: white;
-    font-family: "Proxima Regular";
-  }
+    .appt-time{
+      color: $timeColor;
+      float: right;
+      font-size: 12px;
+      line-height: 22px; /* trick vertical align middle */
+      margin-right: 15px;
+    }
 
-  .appt-edit-container{
-    padding: 10px 0;
-    display: block;
-    margin-left: 15px;
+    .delete-icon{
+      float: left;
+      background: url("../images/delete-icon.png") no-repeat 11px;
+      width: 24px;
+      height: 24px;
+      padding: 9px;
+      cursor: pointer;
+      position: relative;
+      left: -42px;
+      @include transition(left, 0.2s, linear);
+    }
+
+    .arrow-edit{
+      float: right;
+      margin-right: 5px;
+      background: url("../images/arrow-forward.png") no-repeat 0 3px;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      right: -25px;
+      @include transition(right, 0.2s, linear);
+    }
+
+    .slide-container{
+      @include transition(right, 0.2s, ease-in);
+      position: relative;
+    }
+
+    .delete-btn{
+      @include transition(right, 0.2s, ease-in);
+      position: absolute;
+      top: 0px;
+      right: -22%;
+      padding: 10px 22px;
+      background-color: red;
+      cursor: pointer;
+      color: white;
+      font-family: "Proxima Regular";
+    }
+
+    .appt-edit-container{
+      padding: 10px 0;
+      display: block;
+      margin-left: 15px;
+    }
   }
 }

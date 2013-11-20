@@ -1,0 +1,16 @@
+footer{
+  background-color: $footerColor;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+
+  .author{
+    font-size: 10px;
+  }
+
+  .lng{
+    vertical-align: middle;
+    cursor: pointer;
+  }
+}

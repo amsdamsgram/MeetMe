@@ -3,7 +3,7 @@ define([
     'routers/appointmentRouter',
     'jquery',
     'i18n'
-], function(Backbone, Router, $){
+], function(Backbone, Router, $, moment){
     var initialize = function(){
         initRouter();
         initI18n();
@@ -24,10 +24,10 @@ define([
             lng: 'en',
             fallbackLng: 'en',
             useLocalStorage: false, //set true for production
-            resGetPath: 'public/locales/__lng__/__ns__.json',
+            resGetPath: '/public/locales/__lng__/__ns__.json',
             ns: {
-                    namespaces: ['buttons', 'titles'],
-                    defaultNs: 'buttons'
+                    namespaces: ['buttons', 'common'],
+                    defaultNs: 'common'
                 },
             getAsync: false //don't block until all resources are loaded
         });

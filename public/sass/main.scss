@@ -41,10 +41,11 @@ body {
     margin: 0 auto;
     border: black solid 1px;
     background-color: $bgAppColor;
-    overflow: auto;
+    overflow: hidden;
 }
 
 @import "partials/mixins";
 @import "partials/nav";
 @import "partials/list";
 @import "partials/add";
+@import "partials/footer";

@@ -31,12 +31,12 @@ define([
         renderAddEditNavBar: function(){
             var view = this;
             if(this.apptModel == null){
-                $(document).attr('title', $.t('titles:add.window'));
-                this.navBarView.title = $.t('titles:add.nav');
+                $(document).attr('title', $.t('common:title.add.window'));
+                this.navBarView.title = $.t('common:title.add.nav');
             }
             else{
-                $(document).attr('title', $.t('titles:edit.window'));
-                this.navBarView.title = $.t('titles:edit.nav');
+                $(document).attr('title', $.t('common:title.edit.window'));
+                this.navBarView.title = $.t('common:title.edit.nav');
             }
             this.navBarView.leftBtn = {
                 'label' : $.t('buttons:nav.cancel'),
@@ -64,6 +64,7 @@ define([
                                                                     defaultStartTime: this.defaultStartTime,
                                                                     defaultEndTime: this.defaultEndTime});
             $(this.el).html(compiledTemplate);
+            $(this.el).show();
             return this;
         },
 
@@ -74,6 +75,7 @@ define([
 
         clear: function(){
             $(this.el).empty();
+            $(this.el).hide();
         }
     });
     return AppointmentAddView;

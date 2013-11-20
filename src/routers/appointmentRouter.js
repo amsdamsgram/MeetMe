@@ -1,10 +1,11 @@
 define([
     'backbone',
     'views/navigationBarView',
+    'views/footerView',
     'views/appointment/appointmentListView',
     'views/appointment/appointmentAddEditView',
     'collections/appointmentCollection'
-], function(Backbone, NavigationBarView, AppointmentListView, AppointmentAddEditView, AppointmentCollection){
+], function(Backbone, NavigationBarView, FooterView, AppointmentListView, AppointmentAddEditView, AppointmentCollection){
     var AppointmentRouter = Backbone.Router.extend({
        routes: {
            '': 'index',
@@ -18,7 +19,8 @@ define([
             this.collection.fetch();
 
             this.navBarView = new NavigationBarView();
-            this.listView = new AppointmentListView(this.collection, this.navBarView);
+            this.footerView = new FooterView();
+            this.listView = new AppointmentListView(this.collection, this.navBarView, this.footerView);
             this.editView = new AppointmentAddEditView(this.collection, this.navBarView);
             this.addView = new AppointmentAddEditView(this.collection, this.navBarView);
         },

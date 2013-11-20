@@ -12,9 +12,10 @@ define([
         deleteIconClass: 'delete-icon',
         arrowEditClass: 'arrow-edit',
 
-        initialize: function(collection, navBarView){
+        initialize: function(collection, navBarView, footerView){
             this.apptCollection = collection;
             this.navBarView = navBarView;
+            this.footerView = footerView;
             this.editState = false;
         },
 
@@ -71,10 +72,11 @@ define([
         },
 
         render: function(){
-            this.navBarView.title = $.t('titles:list.nav');
-            $(document).attr('title', $.t('titles:list.window'));
+            this.navBarView.title = $.t('common:title.list.nav');
+            $(document).attr('title', $.t('common:title.list.window'));
             var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
             $(this.el).html(compiledTemplate);
+            this.footerView.render();
             if(this.editState){
                 this.renderDeleteIcon();
                 this.renderDoneNavBar();
@@ -83,6 +85,7 @@ define([
             }
             _.bindAll(this, 'render');
             this.apptCollection.bind('remove', this.render);
+            $(this.el).show();
             return this;
         },
 
@@ -162,6 +165,8 @@ define([
 
         clear: function(){
             $(this.el).empty();
+            $(this.el).hide();
+            this.footerView.clear();
         }
     });
     return AppointmentListView;

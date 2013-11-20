@@ -1,8 +1,8 @@
 <form>
-    <input type="text" id="title" name="title" value="<%= appt ? appt.attributes.title:''%>" placeholder="Title" autofocus=""/>
+    <input type="text" id="title" name="title" value="<%= appt ? appt.attributes.title:''%>" placeholder="<%=$.t('common:placeholder.title')%>" autofocus=""/>
     <div class="start">
         <% if (!appt) { %>
-            <input type="text" class="placeholder" placeholder="Start Date & Time" />
+            <input type="text" class="placeholder" placeholder="<%=$.t('common:placeholder.start_date')%>" />
         <% } %>
         <input type="date" id="start-date" name="start_date" value="<%= appt ? appt.attributes.startDate:currentDate%>" />
         <span class="at"> at </span>
@@ -10,10 +10,10 @@
     </div>
     <div class="end">
         <% if (!appt) { %>
-            <input type="text" class="placeholder" placeholder="End Time" />
+            <input type="text" class="placeholder" placeholder="<%=$.t('common:placeholder.end_time')%>" />
         <% } %>
         <input type="time" id="end-time" name="end_time" value="<%= appt ? appt.attributes.endTime:defaultEndTime%>" />
     </div>
-    <input type="text" id="name" name="name" value="<%= appt ? appt.attributes.name:''%>" placeholder="Appointment with..."/>
+    <input type="text" id="name" name="name" value="<%= appt ? appt.attributes.name:''%>" placeholder="<%=$.t('common:placeholder.with')%>"/>
     <textarea id="desc" name="desc" placeholder="Description" rows="13"><%= appt ? appt.attributes.description:''%></textarea>
 </form>

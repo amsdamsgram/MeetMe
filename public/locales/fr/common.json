@@ -1,0 +1,29 @@
+{
+    "title":{
+        "list":{
+            "nav": "Mes rendez-vous",
+            "window": "Meet Me"
+        },
+
+        "add":{
+            "nav": "Ajout",
+            "window": "Meet Me - Ajout"
+        },
+
+        "edit":{
+            "nav": "Edition",
+            "window": "Meet Me - Edition"
+        }
+    },
+
+    "placeholder":{
+        "title": "Titre",
+        "start_date": "Date et heure de début",
+        "end_time": "Heure de fin",
+        "with": "Rendez-vous avec..."
+    },
+
+    "footer":{
+        "developed_by": "Developé par"
+    }
+}
