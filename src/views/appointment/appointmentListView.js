@@ -17,6 +17,7 @@ define([
             this.navBarView = navBarView;
             this.footerView = footerView;
             this.editState = false;
+            this.apptCollection.bind('remove', this.render, this);
         },
 
         events: {
