@@ -83,8 +83,6 @@ define([
             } else {
                 this.renderListNavBar();
             }
-            _.bindAll(this, 'render');
-            this.apptCollection.bind('remove', this.render);
             $(this.el).show();
             return this;
         },
