@@ -1,10 +1,11 @@
 define([
     'jquery',
+    'underscore',
     'handlebars',
     'backbone',
     'text!templates/appointment/appt-list.html',
     'helpers',
-], function($, Handlebars, Backbone, appointmentListTemplate){
+], function($, _, Handlebars, Backbone, appointmentListTemplate){
     var AppointmentListView = Backbone.View.extend({
         el: $('#appointments-list-container'),
 
