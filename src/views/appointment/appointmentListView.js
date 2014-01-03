@@ -1,9 +1,10 @@
 define([
     'jquery',
-    'underscore',
+    'handlebars',
     'backbone',
-    'text!templates/appointment/appt-list.html'
-], function($, _, Backbone, appointmentListTemplate){
+    'text!templates/appointment/appt-list.html',
+    'helpers',
+], function($, Handlebars, Backbone, appointmentListTemplate){
     var AppointmentListView = Backbone.View.extend({
         el: $('#appointments-list-container'),
 
@@ -75,8 +76,8 @@ define([
         render: function(){
             this.navBarView.title = $.t('common:title.list.nav');
             $(document).attr('title', $.t('common:title.list.window'));
-            var compiledTemplate = _.template(appointmentListTemplate, {sortArray: this.orderByDate()});
-            $(this.el).html(compiledTemplate);
+            var compiledTemplate = Handlebars.compile(appointmentListTemplate);
+            $(this.el).html(compiledTemplate({sortArray: this.orderByDate()}));
             this.footerView.render();
             if(this.editState){
                 this.renderDeleteIcon();
